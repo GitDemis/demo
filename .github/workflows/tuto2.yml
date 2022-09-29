@@ -27,8 +27,8 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            name/app
-            ghcr.io/username/app
+            gitdemis/github
+            docker.io/gitdemis/github
           # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule
@@ -45,5 +45,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
